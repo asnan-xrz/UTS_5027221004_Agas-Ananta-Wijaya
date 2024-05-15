@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>E-commerce</title>
+</head>
+
+<body>
+    <h1>E-Commerce</h1>
+    <div id="products"></div>
+
+    <h2>Create Product</h2>
+    <form id="create-product-form">
+        <input type="text" id="create-name" placeholder="Name" required>
+        <input type="text" id="create-description" placeholder="Description" required>
+        <input type="number" id="create-price" placeholder="Price" required>
+        <button type="submit">Create Product</button>
+    </form>
+
+    <h2>Update Product</h2>
+    <form id="update-product-form">
+        <input type="text" id="update-id" placeholder="Product ID" required>
+        <input type="text" id="update-name" placeholder="Name" required>
+        <input type="text" id="update-description" placeholder="Description" required>
+        <input type="number" id="update-price" placeholder="Price" required>
+        <button type="submit">Update Product</button>
+    </form>
+
+    <h2>Delete Product</h2>
+    <form id="delete-product-form">
+        <input type="text" id="delete-id" placeholder="Product ID" required>
+        <button type="submit">Delete Product</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchProducts();
+
+            document.getElementById('create-product-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                createProduct();
+            });
+
+            document.getElementById('update-product-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                updateProduct();
+            });
+
+            document.getElementById('delete-product-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                deleteProduct();
+            });
+        });
+        
+        function fetchProducts() {
+            fetch('/products')
+                .then(response => response.json())
+                .then(data => {
+                    let productsDiv = document.getElementById('products');
+                    productsDiv.innerHTML = '';
+                    data.products.forEach(product => {
+                        let productDiv = document.createElement('div');
+                        productDiv.innerHTML = `<h2>${product.name}</h2><p>${product.description}</p><p>$${product.price}</p>`;
+                        productsDiv.appendChild(productDiv);
+                    });
+                });
+        }
+
+        function createProduct() {
+            const name = document.getElementById('create-name').value;
+            const description = document.getElementById('create-description').value;
+            const price = document.getElementById('create-price').value;
+
+            fetch('/product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, description, price })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                fetchProducts();
+            });
+        }
+
+        function updateProduct() {
+            const id = document.getElementById('update-id').value;
+            const name = document.getElementById('update-name').value;
+            const description = document.getElementById('update-description').value;
+            const price = document.getElementById('update-price').value;
+
+            fetch(`/product/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, description, price })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                fetchProducts();
+            });
+        }
+
+        function deleteProduct() {
+            const id = document.getElementById('delete-id').value;
+
+            fetch(`/product/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                fetchProducts();
+            });
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        #products {
+            width: 80%;
+            margin: auto;
+        }
+
+        form {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input, form button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 1em;
+        }
+    </style>
+</body>
+
+</html>
