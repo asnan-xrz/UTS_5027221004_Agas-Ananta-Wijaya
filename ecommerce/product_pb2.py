@@ -14,23 +14,21 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproduct.proto\x12\tecommerce\"G\n\x07Product\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x01\"\x17\n\tProductId\x12\n\n\x02id\x18\x01 \x01(\t\"X\n\x0fProductResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\x12#\n\x07product\x18\x03 \x01(\x0b\x32\x12.ecommerce.Product\"3\n\x0bProductList\x12$\n\x08products\x18\x01 \x03(\x0b\x32\x12.ecommerce.Product\"\x07\n\x05\x45mpty2\xcf\x02\n\x0eProductService\x12?\n\rCreateProduct\x12\x12.ecommerce.Product\x1a\x1a.ecommerce.ProductResponse\x12>\n\nGetProduct\x12\x14.ecommerce.ProductId\x1a\x1a.ecommerce.ProductResponse\x12?\n\rUpdateProduct\x12\x12.ecommerce.Product\x1a\x1a.ecommerce.ProductResponse\x12\x41\n\rDeleteProduct\x12\x14.ecommerce.ProductId\x1a\x1a.ecommerce.ProductResponse\x12\x38\n\x0cListProducts\x12\x10.ecommerce.Empty\x1a\x16.ecommerce.ProductListb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rproduct.proto\x12\x07product\"G\n\x07Product\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x01\"\x17\n\tProductId\x12\n\n\x02id\x18\x01 \x01(\t\"1\n\x0bProductList\x12\"\n\x08products\x18\x01 \x03(\x0b\x32\x10.product.Product\"\x07\n\x05\x45mpty2\xe1\x01\n\x0eProductService\x12\x31\n\rCreateProduct\x12\x10.product.Product\x1a\x0e.product.Empty\x12\x31\n\rUpdateProduct\x12\x10.product.Product\x1a\x0e.product.Empty\x12\x33\n\rDeleteProduct\x12\x12.product.ProductId\x1a\x0e.product.Empty\x12\x34\n\x0cListProducts\x12\x0e.product.Empty\x1a\x14.product.ProductListb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'product_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_PRODUCT']._serialized_start=28
-  _globals['_PRODUCT']._serialized_end=99
-  _globals['_PRODUCTID']._serialized_start=101
-  _globals['_PRODUCTID']._serialized_end=124
-  _globals['_PRODUCTRESPONSE']._serialized_start=126
-  _globals['_PRODUCTRESPONSE']._serialized_end=214
-  _globals['_PRODUCTLIST']._serialized_start=216
-  _globals['_PRODUCTLIST']._serialized_end=267
-  _globals['_EMPTY']._serialized_start=269
-  _globals['_EMPTY']._serialized_end=276
-  _globals['_PRODUCTSERVICE']._serialized_start=279
-  _globals['_PRODUCTSERVICE']._serialized_end=614
+  _globals['_PRODUCT']._serialized_start=26
+  _globals['_PRODUCT']._serialized_end=97
+  _globals['_PRODUCTID']._serialized_start=99
+  _globals['_PRODUCTID']._serialized_end=122
+  _globals['_PRODUCTLIST']._serialized_start=124
+  _globals['_PRODUCTLIST']._serialized_end=173
+  _globals['_EMPTY']._serialized_start=175
+  _globals['_EMPTY']._serialized_end=182
+  _globals['_PRODUCTSERVICE']._serialized_start=185
+  _globals['_PRODUCTSERVICE']._serialized_end=410
 # @@protoc_insertion_point(module_scope)

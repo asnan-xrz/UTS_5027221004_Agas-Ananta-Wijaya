@@ -1,14 +1,6 @@
 syntax = "proto3";
 
-package ecommerce;
-
-service ProductService {
-    rpc CreateProduct (Product) returns (ProductResponse);
-    rpc GetProduct (ProductId) returns (ProductResponse);
-    rpc UpdateProduct (Product) returns (ProductResponse);
-    rpc DeleteProduct (ProductId) returns (ProductResponse);
-    rpc ListProducts (Empty) returns (ProductList);
-}
+package product;
 
 message Product {
     string id = 1;
@@ -21,14 +13,15 @@ message ProductId {
     string id = 1;
 }
 
-message ProductResponse {
-    bool success = 1;
-    string message = 2;
-    Product product = 3;
-}
-
 message ProductList {
     repeated Product products = 1;
 }
 
 message Empty {}
+
+service ProductService {
+    rpc CreateProduct(Product) returns (Empty);
+    rpc UpdateProduct(Product) returns (Empty);
+    rpc DeleteProduct(ProductId) returns (Empty);
+    rpc ListProducts(Empty) returns (ProductList);
+}
